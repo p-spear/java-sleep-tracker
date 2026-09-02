@@ -31,12 +31,16 @@ public class SleepingSession {
     }
 
     public boolean isNightSession() {
-        int startHour = sleepStart.getHour();
-        int endHour = wakeUp.getHour();
+        LocalDateTime start = this.sleepStart;
+        LocalDateTime end = this.wakeUp;
 
-        return (startHour < 6) ||
-                (endHour >= 0 && endHour <= 6) ||
-                (startHour >= 0 && startHour <= 6);
+        // Проверяем пересечение с интервалом 0:00-6:00
+        LocalDateTime nightStart = start.toLocalDate().atTime(0, 0);
+        LocalDateTime nightEnd = end.toLocalDate().atTime(6, 0);
+
+        // Сессия пересекает интервал, если:
+        // - Началась до окончания интервала И закончилась после начала интервала
+        return start.isBefore(nightEnd) && end.isAfter(nightStart);
     }
 
     @Override

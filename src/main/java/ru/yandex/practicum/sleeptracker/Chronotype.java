@@ -8,10 +8,14 @@ public enum Chronotype {
     @Override
     public String toString() {
         switch (this) {
-            case OWL: return "Сова";
-            case LARK: return "Жаворонок";
-            case PIGEON: return "Голубь";
-            default: return super.toString();
+            case OWL:
+                return "Сова";
+            case LARK:
+                return "Жаворонок";
+            case PIGEON:
+                return "Голубь";
+            default:
+                return super.toString();
         }
     }
 }

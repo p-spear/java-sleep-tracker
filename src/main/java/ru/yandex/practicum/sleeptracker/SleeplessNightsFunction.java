@@ -19,8 +19,12 @@ public class SleeplessNightsFunction implements AnalysisFunction {
         LocalDate startDate = firstStart.toLocalDate();
         LocalDate endDate = lastEnd.toLocalDate();
 
+        // Если первая сессия началась после 12 дня - следующая ночь
+        // Если до 12 дня - предыдущая ночь
         if (firstStart.getHour() >= 12) {
             startDate = startDate.plusDays(1);
+        } else {
+            startDate = startDate.minusDays(1);
         }
 
         int totalNights = Period.between(startDate, endDate).getDays();
@@ -46,9 +50,8 @@ public class SleeplessNightsFunction implements AnalysisFunction {
             LocalDateTime start = session.getSleepStart();
             LocalDateTime end = session.getWakeUp();
 
-            return (start.isBefore(nightEnd) && end.isAfter(nightStart)) ||
-                    (start.isBefore(nightEnd) && end.isAfter(nightEnd)) ||
-                    (start.isBefore(nightStart) && end.isAfter(nightStart));
+            // Проверяем пересечение с интервалом 0:00-6:00
+            return (start.isBefore(nightEnd) && end.isAfter(nightStart));
         });
     }
 }
