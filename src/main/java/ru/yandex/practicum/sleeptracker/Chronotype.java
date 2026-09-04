@@ -1,21 +1,22 @@
 package ru.yandex.practicum.sleeptracker;
 
 public enum Chronotype {
-    OWL,        // Сова
-    LARK,       // Жаворонок
-    PIGEON;     // Голубь
+    OWL("Сова"),
+    LARK("Жаворонок"),
+    PIGEON("Голубь");
+
+    private final String russianName;
+
+    Chronotype(String russianName) {
+        this.russianName = russianName;
+    }
+
+    public String getRussianName() {
+        return russianName;
+    }
 
     @Override
     public String toString() {
-        switch (this) {
-            case OWL:
-                return "Сова";
-            case LARK:
-                return "Жаворонок";
-            case PIGEON:
-                return "Голубь";
-            default:
-                return super.toString();
-        }
+        return russianName;
     }
 }

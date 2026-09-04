@@ -257,6 +257,7 @@ public class SleepTrackerAppTest {
         ChronotypeFunction func = new ChronotypeFunction();
         SleepAnalysisResult result = func.analyze(sessions);
         assertEquals(Chronotype.OWL, result.getValue());
+        assertEquals("Сова", result.getValue().toString());
     }
 
     @Test
@@ -272,6 +273,7 @@ public class SleepTrackerAppTest {
         ChronotypeFunction func = new ChronotypeFunction();
         SleepAnalysisResult result = func.analyze(sessions);
         assertEquals(Chronotype.LARK, result.getValue());
+        assertEquals("Жаворонок", result.getValue().toString());
     }
 
     @Test
@@ -287,6 +289,7 @@ public class SleepTrackerAppTest {
         ChronotypeFunction func = new ChronotypeFunction();
         SleepAnalysisResult result = func.analyze(sessions);
         assertEquals(Chronotype.PIGEON, result.getValue());
+        assertEquals("Голубь", result.getValue().toString());
     }
 
     @Test

@@ -6,6 +6,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ChronotypeFunction implements AnalysisFunction {
+    // Константы для определения хронотипа "Сова"
+    private static final int OWL_SLEEP_START_HOUR = 23;
+    private static final int OWL_WAKE_UP_HOUR = 9;
+
+    // Константы для определения хронотипа "Жаворонок"
+    private static final int LARK_SLEEP_START_HOUR = 22;
+    private static final int LARK_WAKE_UP_HOUR = 7;
     @Override
     public SleepAnalysisResult analyze(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
@@ -51,11 +58,13 @@ public class ChronotypeFunction implements AnalysisFunction {
         int startHour = start.getHour();
         int endHour = end.getHour();
 
-        if (startHour >= 23 && endHour >= 9) {
+        // Сова: засыпание после 23:00 И пробуждение после 9:00
+        if (startHour >= OWL_SLEEP_START_HOUR && endHour >= OWL_WAKE_UP_HOUR) {
             return Chronotype.OWL;
         }
 
-        if (startHour < 22 && endHour < 7) {
+        // Жаворонок: засыпание до 22:00 И пробуждение до 7:00
+        if (startHour < LARK_SLEEP_START_HOUR && endHour < LARK_WAKE_UP_HOUR) {
             return Chronotype.LARK;
         }
 
